@@ -195,9 +195,11 @@ function drawTable(rows) {
         const code = $(row).find(".main-table-guild").attr("href").match(/\/reports\/(.+)#boss/)[1];
         const guild_name = $(row).find(".main-table-guild").html();
         const realm_name = $(row).find(".main-table-realm").html();
-        const faction_name = $(row).find(".main-table-guild").attr("class").match(/faction-[01]/) == "faction-01" ? "Horde" : "Alliance";
+        const faction_name = $(row).find(".main-table-guild").attr("class")
+            .match(/faction-[01]/) == "faction-01" ? "Horde" : "Alliance";
         const duration = $(row).find(".fights-table-duration").html().trim();
-        const date = new Date($(row).find("script").html().match(/new Date\(([0-9]+)\)/)[1] * 1).toLocaleDateString("en-US");
+        const date = new Date($(row).find("script").html()
+            .match(/new Date\(([0-9]+)\)/)[1] * 1).toLocaleDateString("en-US");
         
         var row_html = "<tr>"
             + `<td>#${i}</td>`
@@ -206,8 +208,11 @@ function drawTable(rows) {
             + `<td>${faction_name}</td>`
             + `<td>${date}</td>`
             + `<td>${duration}</td>`
-            + `<td><button onclick="select('${code}', '${guild_name}', 1);">1</button><button onclick="select('${code}', '${guild_name}', 2);">2</button></td>`
-            + "</tr>";
+            + `<td>`
+            + `<button onclick="select('${code}', '${guild_name}', 1);">1</button>`
+            + `<button onclick="select('${code}', '${guild_name}', 2);">2</button>`
+            + `</td>`
+            + `</tr>`;
         
         table.append(row_html);
     }
@@ -217,12 +222,14 @@ function getData() {
     fights_1 = responses[0].fights;
     fights_2 = responses[1].fights;
 
-    if (fights_1.lenght < 1 || fights_2.length < 1) {
+    if (fights_1.length < 1 || fights_2.length < 1
+        || responses[0].completeRaids.length < 1
+        || responses[1].completeRaids.length < 1) {
         return
     }
     
-    offset_1 = fights_1[0].start_time;
-    offset_2 = fights_2[0].start_time;
+    offset_1 = responses[0].completeRaids[0].start_time;
+    offset_2 = responses[1].completeRaids[0].start_time;
 
 	res = [{
 		name: "start",
