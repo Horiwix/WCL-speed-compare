@@ -223,13 +223,19 @@ function getData() {
     fights_2 = responses[1].fights;
 
     if (fights_1.length < 1 || fights_2.length < 1
-        || responses[0].completeRaids.length < 1
-        || responses[1].completeRaids.length < 1) {
+        || ("completeRaids" in responses[0] && responses[0].completeRaids.length < 1)
+        || ("completeRaids" in responses[1] && responses[1].completeRaids.length < 1)) {
         return
     }
     
-    offset_1 = responses[0].completeRaids[0].start_time;
-    offset_2 = responses[1].completeRaids[0].start_time;
+    offset_1 = fights_1[0].start_time;
+    if ("completeRaids" in responses[0]) {
+        offset_1 = responses[0].completeRaids[0].start_time;
+    }
+    offset_2 = fights_2[0].start_time;
+    if ("completeRaids" in responses[1]) {
+        offset_2 = responses[1].completeRaids[0].start_time;
+    }
 
 	res = [{
 		name: "start",
