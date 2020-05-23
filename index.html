@@ -196,7 +196,7 @@ function drawTable(rows) {
         const guild_name = $(row).find(".main-table-guild").html();
         const realm_name = $(row).find(".main-table-realm").html();
         const faction_name = $(row).find(".main-table-guild").attr("class")
-            .match(/faction-[01]/) == "faction-01" ? "Horde" : "Alliance";
+            .match(/faction-[01]/) == "faction-1" ? "Horde" : "Alliance";
         const duration = $(row).find(".fights-table-duration").html().trim();
         const date = new Date($(row).find("script").html()
             .match(/new Date\(([0-9]+)\)/)[1] * 1).toLocaleDateString("en-US");
