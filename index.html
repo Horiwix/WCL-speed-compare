@@ -12,6 +12,10 @@
     </style>
     </head>
     <body>
+        Code can be found in report URL. Example: <br>
+        https://classic.warcraftlogs.com/reports/4d9vzTwYQj2ncKN7 <br>
+        Code: <b>4d9vzTwYQj2ncKN7</b>
+        <br><br>
         <form onsubmit="return doMain(this);">
             <label for="code_1">CODE 1:</label>
             <input type="text" id="code_1" name="code_1"></input>
@@ -31,7 +35,7 @@
         <canvas id="data_chart" width="800" height="400"></canvas>
 
         </br>
-        <div>BLACKWING LAIR:</div>
+        <div>AQ40:</div>
         </br>
 
         <table id="data_table">
@@ -309,7 +313,7 @@ function doQueryReport(code, id) {
 function doQueryRankings() {
     const Http = new XMLHttpRequest();
     const page = 1;
-    const url = `https://classic.warcraftlogs.com/zone/rankings/table/1500/speed/630/3/40/2/Any/Any/0/0/0/0/0/?search=&page=${page}`;
+    const url = `https://classic.warcraftlogs.com/zone/rankings/table/1500/speed/700/3/40/4/Any/Any/0/0/0/0/0/?search=&page=${page}`;
     Http.open("GET", `https://cors-anywhere.herokuapp.com/${url}`);
 
     Http.onreadystatechange = function(){
